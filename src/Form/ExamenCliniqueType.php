@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\Consultation;
+use App\Entity\ExamenClinique;
+use App\Entity\Laboratin;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+class ExamenCliniqueType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('type')
+            ->add('resultat')
+            ->add('date', null, [
+                'widget' => 'single_text',
+            ])
+            ->add('consultation', EntityType::class, [
+                'class' => Consultation::class,
+                'choice_label' => 'id',
+            ])
+            ->add('laboratin', EntityType::class, [
+                'class' => Laboratin::class,
+                'choice_label' => 'id',
+            ])
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => ExamenClinique::class,
+        ]);
+    }
+}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Receptioniste{% endblock %}
+
+{% block body %}
+    <h1>Edit Receptioniste</h1>
+
+    {{ include('receptioniste/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_receptioniste_index') }}">back to list</a>
+
+    {{ include('receptioniste/_delete_form.html.twig') }}
+{% endblock %}

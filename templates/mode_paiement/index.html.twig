@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ModePaiement index{% endblock %}
+
+{% block body %}
+    <h1>ModePaiement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>TypePaiement</th>
+                <th>Mwthode</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mode_paiement in mode_paiements %}
+            <tr>
+                <td>{{ mode_paiement.id }}</td>
+                <td>{{ mode_paiement.typePaiement }}</td>
+                <td>{{ mode_paiement.mwthode }}</td>
+                <td>{{ mode_paiement.date ? mode_paiement.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_mode_paiement_show', {'id': mode_paiement.id}) }}">show</a>
+                    <a href="{{ path('app_mode_paiement_edit', {'id': mode_paiement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_mode_paiement_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PriseService index{% endblock %}
+
+{% block body %}
+    <h1>PriseService index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateDebut</th>
+                <th>DateFin</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for prise_service in prise_services %}
+            <tr>
+                <td>{{ prise_service.id }}</td>
+                <td>{{ prise_service.dateDebut ? prise_service.dateDebut|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ prise_service.dateFin ? prise_service.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_prise_service_show', {'id': prise_service.id}) }}">show</a>
+                    <a href="{{ path('app_prise_service_edit', {'id': prise_service.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_prise_service_new') }}">Create new</a>
+{% endblock %}
