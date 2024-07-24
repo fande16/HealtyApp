@@ -3,9 +3,22 @@
 {% block title %}New Medecin{% endblock %}
 
 {% block body %}
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card border-primary mb-3">
+                <div class="card-header">
+
     <h1>Create new Medecin</h1>
+                </div>
+                <div class="card-body">
 
     {{ include('medecin/_form.html.twig') }}
 
     <a href="{{ path('app_medecin_index') }}">back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

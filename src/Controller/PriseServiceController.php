@@ -31,6 +31,9 @@ class PriseServiceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $priseService->setUserCreate($this->getUser());
+            $priseService->setDateDebut(new \DateTime('now'));
+            //$priseService->setDateFin(new \DateTime('logout'));
+
             $priseService->setDateCreate(new \DateTime('now'));
             $entityManager->persist($priseService);
             $entityManager->flush();

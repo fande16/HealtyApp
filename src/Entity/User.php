@@ -37,6 +37,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 64)]
     private ?string $email = null;
+    #[ORM\Column]
+    private ?bool $isVerified = null;
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $user_create;
 
@@ -55,12 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime', nullable: true)]
     private $date_delete;
 
-    #[ORM\Column(type: Types::GUID)]
-    private ?string $uuid = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?bool $isVerified = null;
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -219,29 +216,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    public function getUuid(): ?string
-    {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid): static
-    {
-        $this->uuid = $uuid;
-
-        return $this;
-    }
-
+    
     public function isVerified(): ?bool
     {
         return $this->isVerified;
     }
 
-    public function setVerified(?bool $isVerified): static
+    public function setVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
+
     }
 
