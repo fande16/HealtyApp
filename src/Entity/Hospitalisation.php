@@ -48,11 +48,7 @@ class Hospitalisation
     #[ORM\JoinColumn(nullable: false)]
     private ?Consultation $consultation = null;
 
-    /**
-     * @var Collection<int, Soins>
-     */
-    #[ORM\OneToMany(targetEntity: Soins::class, mappedBy: 'hospitalisation')]
-    private Collection $soins;
+    
 
     public function getUserCreate(): ?string
     {
@@ -126,10 +122,7 @@ class Hospitalisation
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->soins = new ArrayCollection();
-    }
+    
 
     public function getId(): ?int
     {
@@ -184,33 +177,11 @@ class Hospitalisation
         return $this;
     }
 
-    /**
-     * @return Collection<int, Soins>
-     */
-    public function getSoins(): Collection
+    public function __toString()
     {
-        return $this->soins;
+      return "".$this->getId()." ".$this->getDateEntre()." ".$this->getDateSortie()." ".$this->getConsultation();
     }
 
-    public function addSoin(Soins $soin): static
-    {
-        if (!$this->soins->contains($soin)) {
-            $this->soins->add($soin);
-            $soin->setHospitalisation($this);
-        }
+    
 
-        return $this;
-    }
-
-    public function removeSoin(Soins $soin): static
-    {
-        if ($this->soins->removeElement($soin)) {
-            // set the owning side to null (unless already changed)
-            if ($soin->getHospitalisation() === $this) {
-                $soin->setHospitalisation(null);
-            }
-        }
-
-        return $this;
-    }
 }

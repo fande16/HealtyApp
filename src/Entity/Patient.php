@@ -59,24 +59,6 @@ class Patient
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
 
-    /**
-     * @var Collection<int, Consultation>
-     */
-    #[ORM\OneToMany(targetEntity: Consultation::class, mappedBy: 'patient')]
-    private Collection $consultations;
-
-    /**
-     * @var Collection<int, Prescription>
-     */
-    #[ORM\OneToMany(targetEntity: Prescription::class, mappedBy: 'patient')]
-    private Collection $prescriptions;
-
-    /**
-     * @var Collection<int, Rdv>
-     */
-    #[ORM\OneToMany(targetEntity: Rdv::class, mappedBy: 'patient')]
-    private Collection $rdvs;
-
     public function getUserCreate(): ?string
     {
         return $this->user_create;
@@ -149,13 +131,7 @@ class Patient
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->consultations = new ArrayCollection();
-        $this->prescriptions = new ArrayCollection();
-        $this->rdvs = new ArrayCollection();
-    }
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -257,94 +233,9 @@ class Patient
         return $this;
     }
 
-    /**
-     * @return Collection<int, Consultation>
-     */
-    public function getConsultations(): Collection
+    public function __toString()
     {
-        return $this->consultations;
-    }
-
-    public function addConsultation(Consultation $consultation): static
-    {
-        if (!$this->consultations->contains($consultation)) {
-            $this->consultations->add($consultation);
-            $consultation->setPatient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeConsultation(Consultation $consultation): static
-    {
-        if ($this->consultations->removeElement($consultation)) {
-            // set the owning side to null (unless already changed)
-            if ($consultation->getPatient() === $this) {
-                $consultation->setPatient(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Prescription>
-     */
-    public function getPrescriptions(): Collection
-    {
-        return $this->prescriptions;
-    }
-
-    public function addPrescription(Prescription $prescription): static
-    {
-        if (!$this->prescriptions->contains($prescription)) {
-            $this->prescriptions->add($prescription);
-            $prescription->setPatient($this);
-        }
-
-        return $this;
-    }
-
-    public function removePrescription(Prescription $prescription): static
-    {
-        if ($this->prescriptions->removeElement($prescription)) {
-            // set the owning side to null (unless already changed)
-            if ($prescription->getPatient() === $this) {
-                $prescription->setPatient(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Rdv>
-     */
-    public function getRdvs(): Collection
-    {
-        return $this->rdvs;
-    }
-
-    public function addRdv(Rdv $rdv): static
-    {
-        if (!$this->rdvs->contains($rdv)) {
-            $this->rdvs->add($rdv);
-            $rdv->setPatient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRdv(Rdv $rdv): static
-    {
-        if ($this->rdvs->removeElement($rdv)) {
-            // set the owning side to null (unless already changed)
-            if ($rdv->getPatient() === $this) {
-                $rdv->setPatient(null);
-            }
-        }
-
-        return $this;
+      return "".$this->getId()." ".$this->getNom()." ".$this->getPrenom()." ".$this->getGS();
     }
 
 

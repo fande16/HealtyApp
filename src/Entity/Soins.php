@@ -216,4 +216,9 @@ class Soins
 
         return $this;
     }
+
+    public function __toString()
+    {
+      return "".$this->getId()." ".$this->getInfirmiere()." ".$this->getHospitalisation();
+    }
 }

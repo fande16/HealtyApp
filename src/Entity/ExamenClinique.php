@@ -186,4 +186,9 @@ class ExamenClinique
 
         return $this;
     }
+
+    public function __toString()
+    {
+      return "".$this->getId()." ".$this->gettype()." ".$this->getResultat()." ".$this->getdate();
+    }
 }

@@ -202,4 +202,10 @@ class LignePrescription
 
         return $this;
     }
+
+    public function __toString()
+    {
+      return "".$this->getId()." ".$this->getdate()." ".$this->getQuantite()." ".$this->getPosologie();
+    }
+
 }

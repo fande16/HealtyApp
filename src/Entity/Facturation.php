@@ -189,4 +189,9 @@ class Facturation
 
         return $this;
     }
+
+    public function __toString()
+    {
+      return "".$this->getId()." ".$this->getMontant()." ".$this->getModePaiement()." ".$this->getCaisse();
+    }
 }

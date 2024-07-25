@@ -52,11 +52,6 @@ class Prescription
     #[ORM\ManyToOne(inversedBy: 'prescriptions')]
     private ?Pharmacien $pharmacien = null;
 
-    /**
-     * @var Collection<int, LignePrescription>
-     */
-    #[ORM\OneToMany(targetEntity: LignePrescription::class, mappedBy: 'prescription')]
-    private Collection $lignePrescriptions;
 
     public function getUserCreate(): ?string
     {
@@ -130,10 +125,7 @@ class Prescription
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->lignePrescriptions = new ArrayCollection();
-    }
+  
 
     public function getId(): ?int
     {
@@ -202,33 +194,10 @@ class Prescription
         return $this;
     }
 
-    /**
-     * @return Collection<int, LignePrescription>
-     */
-    public function getLignePrescriptions(): Collection
+    public function __toString()
     {
-        return $this->lignePrescriptions;
+      return "".$this->getId()." ".$this->getPosologie()." ".$this->getDescription()." ".$this->getdate();
     }
 
-    public function addLignePrescription(LignePrescription $lignePrescription): static
-    {
-        if (!$this->lignePrescriptions->contains($lignePrescription)) {
-            $this->lignePrescriptions->add($lignePrescription);
-            $lignePrescription->setPrescription($this);
-        }
 
-        return $this;
-    }
-
-    public function removeLignePrescription(LignePrescription $lignePrescription): static
-    {
-        if ($this->lignePrescriptions->removeElement($lignePrescription)) {
-            // set the owning side to null (unless already changed)
-            if ($lignePrescription->getPrescription() === $this) {
-                $lignePrescription->setPrescription(null);
-            }
-        }
-
-        return $this;
-    }
 }

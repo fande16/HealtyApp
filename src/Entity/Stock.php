@@ -41,20 +41,13 @@ class Stock
     #[ORM\Column]
     private ?int $prix = null;
 
-    /**
-     * @var Collection<int, LignePrescription>
-     */
-    #[ORM\OneToMany(targetEntity: LignePrescription::class, mappedBy: 'stock')]
-    private Collection $lignePrescriptions;
+   
 
     #[ORM\ManyToOne(inversedBy: 'stocks')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Medicament $medicament = null;
 
-    public function __construct()
-    {
-        $this->lignePrescriptions = new ArrayCollection();
-    }
+   
 
     public function getId(): ?int
     {
@@ -85,35 +78,7 @@ class Stock
         return $this;
     }
 
-    /**
-     * @return Collection<int, LignePrescription>
-     */
-    public function getLignePrescriptions(): Collection
-    {
-        return $this->lignePrescriptions;
-    }
-
-    public function addLignePrescription(LignePrescription $lignePrescription): static
-    {
-        if (!$this->lignePrescriptions->contains($lignePrescription)) {
-            $this->lignePrescriptions->add($lignePrescription);
-            $lignePrescription->setStock($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLignePrescription(LignePrescription $lignePrescription): static
-    {
-        if ($this->lignePrescriptions->removeElement($lignePrescription)) {
-            // set the owning side to null (unless already changed)
-            if ($lignePrescription->getStock() === $this) {
-                $lignePrescription->setStock(null);
-            }
-        }
-
-        return $this;
-    }
+   
 
     public function getMedicament(): ?Medicament
     {
@@ -197,5 +162,10 @@ class Stock
         $this->date_delete = $date_delete;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+      return "".$this->getId()." ".$this->getQuantite()." ".$this->getPrix()." ".$this->getMedicament();
     }
 }

@@ -47,11 +47,6 @@ class Pharmacien
     #[ORM\Column(length: 255)]
     private ?string $telephone = null;
 
-    /**
-     * @var Collection<int, Prescription>
-     */
-    #[ORM\OneToMany(targetEntity: Prescription::class, mappedBy: 'pharmacien')]
-    private Collection $prescriptions;
 
     public function getUserCreate(): ?string
     {
@@ -125,10 +120,7 @@ class Pharmacien
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->prescriptions = new ArrayCollection();
-    }
+    
 
     public function getId(): ?int
     {
@@ -183,33 +175,10 @@ class Pharmacien
         return $this;
     }
 
-    /**
-     * @return Collection<int, Prescription>
-     */
-    public function getPrescriptions(): Collection
+    public function __toString()
     {
-        return $this->prescriptions;
+      return "".$this->getId()." ".$this->getNom()." ".$this->getPrenom()." ".$this->getTelephone();
     }
 
-    public function addPrescription(Prescription $prescription): static
-    {
-        if (!$this->prescriptions->contains($prescription)) {
-            $this->prescriptions->add($prescription);
-            $prescription->setPharmacien($this);
-        }
 
-        return $this;
-    }
-
-    public function removePrescription(Prescription $prescription): static
-    {
-        if ($this->prescriptions->removeElement($prescription)) {
-            // set the owning side to null (unless already changed)
-            if ($prescription->getPharmacien() === $this) {
-                $prescription->setPharmacien(null);
-            }
-        }
-
-        return $this;
-    }
 }

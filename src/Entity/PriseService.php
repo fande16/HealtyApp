@@ -42,11 +42,6 @@ class PriseService
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateFin = null;
 
-    /**
-     * @var Collection<int, Receptioniste>
-     */
-    #[ORM\OneToMany(targetEntity: Receptioniste::class, mappedBy: 'priseService')]
-    private Collection $receptionistes;
 
     #[ORM\ManyToOne(inversedBy: 'priseServices')]
     #[ORM\JoinColumn(nullable: false)]
@@ -124,10 +119,7 @@ class PriseService
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->receptionistes = new ArrayCollection();
-    }
+   
 
     public function getId(): ?int
     {
@@ -158,35 +150,7 @@ class PriseService
         return $this;
     }
 
-    /**
-     * @return Collection<int, Receptioniste>
-     */
-    public function getReceptionistes(): Collection
-    {
-        return $this->receptionistes;
-    }
-
-    public function addReceptioniste(Receptioniste $receptioniste): static
-    {
-        if (!$this->receptionistes->contains($receptioniste)) {
-            $this->receptionistes->add($receptioniste);
-            $receptioniste->setPriseService($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReceptioniste(Receptioniste $receptioniste): static
-    {
-        if ($this->receptionistes->removeElement($receptioniste)) {
-            // set the owning side to null (unless already changed)
-            if ($receptioniste->getPriseService() === $this) {
-                $receptioniste->setPriseService(null);
-            }
-        }
-
-        return $this;
-    }
+   
 
     public function getCaisse(): ?Caisse
     {
@@ -199,4 +163,10 @@ class PriseService
 
         return $this;
     }
+
+    public function __toString()
+    {
+      return "".$this->getId()." ".$this->getDateDebut()." ".$this->getDateFin()." ".$this->getCaisse();
+    }
+
 }

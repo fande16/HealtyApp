@@ -53,17 +53,7 @@ class Medecin
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $telephone = null;
 
-    /**
-     * @var Collection<int, Consultation>
-     */
-    #[ORM\OneToMany(targetEntity: Consultation::class, mappedBy: 'medecin')]
-    private Collection $consultations;
-
-    /**
-     * @var Collection<int, Prescription>
-     */
-    #[ORM\OneToMany(targetEntity: Prescription::class, mappedBy: 'medecin')]
-    private Collection $prescriptions;
+   
 
     public function getUserCreate(): ?string
     {
@@ -137,11 +127,7 @@ class Medecin
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->consultations = new ArrayCollection();
-        $this->prescriptions = new ArrayCollection();
-    }
+   
 
     public function getId(): ?int
     {
@@ -220,64 +206,9 @@ class Medecin
         return $this;
     }
 
-    /**
-     * @return Collection<int, Consultation>
-     */
-    public function getConsultations(): Collection
+    public function __toString()
     {
-        return $this->consultations;
-    }
-
-    public function addConsultation(Consultation $consultation): static
-    {
-        if (!$this->consultations->contains($consultation)) {
-            $this->consultations->add($consultation);
-            $consultation->setMedecin($this);
-        }
-
-        return $this;
-    }
-
-    public function removeConsultation(Consultation $consultation): static
-    {
-        if ($this->consultations->removeElement($consultation)) {
-            // set the owning side to null (unless already changed)
-            if ($consultation->getMedecin() === $this) {
-                $consultation->setMedecin(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Prescription>
-     */
-    public function getPrescriptions(): Collection
-    {
-        return $this->prescriptions;
-    }
-
-    public function addPrescription(Prescription $prescription): static
-    {
-        if (!$this->prescriptions->contains($prescription)) {
-            $this->prescriptions->add($prescription);
-            $prescription->setMedecin($this);
-        }
-
-        return $this;
-    }
-
-    public function removePrescription(Prescription $prescription): static
-    {
-        if ($this->prescriptions->removeElement($prescription)) {
-            // set the owning side to null (unless already changed)
-            if ($prescription->getMedecin() === $this) {
-                $prescription->setMedecin(null);
-            }
-        }
-
-        return $this;
+      return "".$this->getId()." ".$this->getNom()." ".$this->getPrenom()." ".$this->getTelephone()." ".$this->getSpecialite();
     }
 
 }

@@ -41,11 +41,7 @@ class Medicament
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    /**
-     * @var Collection<int, Stock>
-     */
-    #[ORM\OneToMany(targetEntity: Stock::class, mappedBy: 'medicament')]
-    private Collection $stocks;
+    
 
     public function getUserCreate(): ?string
     {
@@ -119,10 +115,7 @@ class Medicament
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->stocks = new ArrayCollection();
-    }
+   
 
     public function getId(): ?int
     {
@@ -153,33 +146,9 @@ class Medicament
         return $this;
     }
 
-    /**
-     * @return Collection<int, Stock>
-     */
-    public function getStocks(): Collection
+    public function __toString()
     {
-        return $this->stocks;
+      return "".$this->getId()." ".$this->getNom()." ".$this->getDescription();
     }
 
-    public function addStock(Stock $stock): static
-    {
-        if (!$this->stocks->contains($stock)) {
-            $this->stocks->add($stock);
-            $stock->setMedicament($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStock(Stock $stock): static
-    {
-        if ($this->stocks->removeElement($stock)) {
-            // set the owning side to null (unless already changed)
-            if ($stock->getMedicament() === $this) {
-                $stock->setMedicament(null);
-            }
-        }
-
-        return $this;
-    }
 }

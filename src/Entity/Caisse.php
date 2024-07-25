@@ -40,23 +40,7 @@ class Caisse
     #[ORM\Column(length: 255)]
     private ?string $nomCaisse = null;
 
-    /**
-     * @var Collection<int, PriseService>
-     */
-    #[ORM\OneToMany(targetEntity: PriseService::class, mappedBy: 'caisse')]
-    private Collection $priseServices;
-
-    /**
-     * @var Collection<int, Facturation>
-     */
-    #[ORM\OneToMany(targetEntity: Facturation::class, mappedBy: 'caisse')]
-    private Collection $facturations;
-
-    /**
-     * @var Collection<int, Rdv>
-     */
-    #[ORM\OneToMany(targetEntity: Rdv::class, mappedBy: 'caisse')]
-    private Collection $rdvs;
+    
 
     public function getUserCreate(): ?string
     {
@@ -130,13 +114,7 @@ class Caisse
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->priseServices = new ArrayCollection();
-        $this->facturations = new ArrayCollection();
-        $this->rdvs = new ArrayCollection();
-    }
-
+   
     public function getId(): ?int
     {
         return $this->id;
@@ -154,95 +132,13 @@ class Caisse
         return $this;
     }
 
-    /**
-     * @return Collection<int, PriseService>
-     */
-    public function getPriseServices(): Collection
+    public function __toString()
     {
-        return $this->priseServices;
+      return "".$this->getnomCaisse();
     }
 
-    public function addPriseService(PriseService $priseService): static
-    {
-        if (!$this->priseServices->contains($priseService)) {
-            $this->priseServices->add($priseService);
-            $priseService->setCaisse($this);
-        }
-
-        return $this;
-    }
-
-    public function removePriseService(PriseService $priseService): static
-    {
-        if ($this->priseServices->removeElement($priseService)) {
-            // set the owning side to null (unless already changed)
-            if ($priseService->getCaisse() === $this) {
-                $priseService->setCaisse(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Facturation>
-     */
-    public function getFacturations(): Collection
-    {
-        return $this->facturations;
-    }
-
-    public function addFacturation(Facturation $facturation): static
-    {
-        if (!$this->facturations->contains($facturation)) {
-            $this->facturations->add($facturation);
-            $facturation->setCaisse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFacturation(Facturation $facturation): static
-    {
-        if ($this->facturations->removeElement($facturation)) {
-            // set the owning side to null (unless already changed)
-            if ($facturation->getCaisse() === $this) {
-                $facturation->setCaisse(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Rdv>
-     */
-    public function getRdvs(): Collection
-    {
-        return $this->rdvs;
-    }
-
-    public function addRdv(Rdv $rdv): static
-    {
-        if (!$this->rdvs->contains($rdv)) {
-            $this->rdvs->add($rdv);
-            $rdv->setCaisse($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRdv(Rdv $rdv): static
-    {
-        if ($this->rdvs->removeElement($rdv)) {
-            // set the owning side to null (unless already changed)
-            if ($rdv->getCaisse() === $this) {
-                $rdv->setCaisse(null);
-            }
-        }
-
-        return $this;
-    }
+    
+  
 
    
 }

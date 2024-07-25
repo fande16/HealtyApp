@@ -51,11 +51,7 @@ class Consultation
     #[ORM\Column(length: 255)]
     private ?string $resultat = null;
 
-    /**
-     * @var Collection<int, ExamenClinique>
-     */
-    #[ORM\OneToMany(targetEntity: ExamenClinique::class, mappedBy: 'consultation')]
-    private Collection $examenCliniques;
+   
 
     #[ORM\ManyToOne(inversedBy: 'consultations')]
     private ?Patient $patient = null;
@@ -64,29 +60,6 @@ class Consultation
     #[ORM\JoinColumn(nullable: false)]
     private ?Medecin $medecin = null;
 
-    /**
-     * @var Collection<int, Hospitalisation>
-     */
-    #[ORM\OneToMany(targetEntity: Hospitalisation::class, mappedBy: 'consultation')]
-    private Collection $hospitalisations;
-
-    /**
-     * @var Collection<int, Facturation>
-     */
-    #[ORM\OneToMany(targetEntity: Facturation::class, mappedBy: 'consultation')]
-    private Collection $facturations;
-
-    /**
-     * @var Collection<int, Prescription>
-     */
-    #[ORM\OneToMany(targetEntity: Prescription::class, mappedBy: 'consultation')]
-    private Collection $prescriptions;
-
-    /**
-     * @var Collection<int, Rdv>
-     */
-    #[ORM\OneToMany(targetEntity: Rdv::class, mappedBy: 'consultation')]
-    private Collection $rdvs;
 
     #[ORM\Column(length: 255)]
     private ?string $poids = null;
@@ -181,14 +154,7 @@ class Consultation
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->examenCliniques = new ArrayCollection();
-        $this->hospitalisations = new ArrayCollection();
-        $this->facturations = new ArrayCollection();
-        $this->prescriptions = new ArrayCollection();
-        $this->rdvs = new ArrayCollection();
-    }
+    
 
     public function getId(): ?int
     {
@@ -245,35 +211,6 @@ class Consultation
         return $this;
     }
 
-    /**
-     * @return Collection<int, ExamenClinique>
-     */
-    public function getExamenCliniques(): Collection
-    {
-        return $this->examenCliniques;
-    }
-
-    public function addExamenClinique(ExamenClinique $examenClinique): static
-    {
-        if (!$this->examenCliniques->contains($examenClinique)) {
-            $this->examenCliniques->add($examenClinique);
-            $examenClinique->setConsultation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeExamenClinique(ExamenClinique $examenClinique): static
-    {
-        if ($this->examenCliniques->removeElement($examenClinique)) {
-            // set the owning side to null (unless already changed)
-            if ($examenClinique->getConsultation() === $this) {
-                $examenClinique->setConsultation(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getPatient(): ?Patient
     {
@@ -299,103 +236,6 @@ class Consultation
         return $this;
     }
 
-    /**
-     * @return Collection<int, Hospitalisation>
-     */
-    public function getHospitalisations(): Collection
-    {
-        return $this->hospitalisations;
-    }
-
-    public function addHospitalisation(Hospitalisation $hospitalisation): static
-    {
-        if (!$this->hospitalisations->contains($hospitalisation)) {
-            $this->hospitalisations->add($hospitalisation);
-            $hospitalisation->setConsultation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeHospitalisation(Hospitalisation $hospitalisation): static
-    {
-        if ($this->hospitalisations->removeElement($hospitalisation)) {
-            // set the owning side to null (unless already changed)
-            if ($hospitalisation->getConsultation() === $this) {
-                $hospitalisation->setConsultation(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Facturation>
-     */
-    public function getFacturations(): Collection
-    {
-        return $this->facturations;
-    }
-
-    public function addFacturation(Facturation $facturation): static
-    {
-        if (!$this->facturations->contains($facturation)) {
-            $this->facturations->add($facturation);
-            $facturation->setConsultation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFacturation(Facturation $facturation): static
-    {
-        if ($this->facturations->removeElement($facturation)) {
-            // set the owning side to null (unless already changed)
-            if ($facturation->getConsultation() === $this) {
-                $facturation->setConsultation(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Prescription>
-     */
-    public function getPrescriptions(): Collection
-    {
-        return $this->prescriptions;
-    }
-
-    public function addPrescription(Prescription $prescription): static
-    {
-        if (!$this->prescriptions->contains($prescription)) {
-            $this->prescriptions->add($prescription);
-            $prescription->setConsultation($this);
-        }
-
-        return $this;
-    }
-
-    public function removePrescription(Prescription $prescription): static
-    {
-        if ($this->prescriptions->removeElement($prescription)) {
-            // set the owning side to null (unless already changed)
-            if ($prescription->getConsultation() === $this) {
-                $prescription->setConsultation(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Rdv>
-     */
-    public function getRdvs(): Collection
-    {
-        return $this->rdvs;
-    }
 
     public function getPoids(): ?string
     {
@@ -481,27 +321,10 @@ class Consultation
         return $this;
     }
 
-    public function addRdv(Rdv $rdv): static
+    public function __toString()
     {
-        if (!$this->rdvs->contains($rdv)) {
-            $this->rdvs->add($rdv);
-            $rdv->setConsultation($this);
-        }
-
-        return $this;
+      return "".$this->getid()." ".$this->getdate()." ".$this->getPatient()." ".$this->getMotif();
     }
 
-    public function removeRdv(Rdv $rdv): static
-    {
-        if ($this->rdvs->removeElement($rdv)) {
-            // set the owning side to null (unless already changed)
-            if ($rdv->getConsultation() === $this) {
-                $rdv->setConsultation(null);
-            }
-        }
-
-        return $this;
-    }
-
- 
+   
 }

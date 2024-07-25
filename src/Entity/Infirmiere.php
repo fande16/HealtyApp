@@ -46,11 +46,6 @@ class Infirmiere
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    /**
-     * @var Collection<int, Soins>
-     */
-    #[ORM\OneToMany(targetEntity: Soins::class, mappedBy: 'infirmiere')]
-    private Collection $soins;
 
     public function getUserCreate(): ?string
     {
@@ -124,10 +119,7 @@ class Infirmiere
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->soins = new ArrayCollection();
-    }
+    
 
     public function getId(): ?int
     {
@@ -182,33 +174,10 @@ class Infirmiere
         return $this;
     }
 
-    /**
-     * @return Collection<int, Soins>
-     */
-    public function getSoins(): Collection
+    public function __toString()
     {
-        return $this->soins;
+      return "".$this->getId()." ".$this->getNom()." ".$this->getPrenom()." ".$this->getTelephone();
     }
 
-    public function addSoin(Soins $soin): static
-    {
-        if (!$this->soins->contains($soin)) {
-            $this->soins->add($soin);
-            $soin->setInfirmiere($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSoin(Soins $soin): static
-    {
-        if ($this->soins->removeElement($soin)) {
-            // set the owning side to null (unless already changed)
-            if ($soin->getInfirmiere() === $this) {
-                $soin->setInfirmiere(null);
-            }
-        }
-
-        return $this;
-    }
+   
 }

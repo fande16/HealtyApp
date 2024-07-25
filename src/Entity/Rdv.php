@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RdvRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\PropertyInfo\Type;
 
 #[ORM\Entity(repositoryClass: RdvRepository::class)]
 class Rdv
@@ -41,6 +42,15 @@ class Rdv
 
     #[ORM\Column(length: 255)]
     private ?string $motif = null;
+
+    #[ORM\ManyToOne]
+    private ?Consultation $consultation = null;
+
+    #[ORM\ManyToOne]
+    private ?Patient $patient = null;
+
+    #[ORM\ManyToOne]
+    private ?Caisse $caisse = null;
 
     public function getUserCreate(): ?string
     {
@@ -154,4 +164,46 @@ class Rdv
 
         return $this;
     }
+
+    public function getConsultation(): ?Consultation
+    {
+        return $this->consultation;
+    }
+
+    public function setConsultation(?Consultation $consultation): static
+    {
+        $this->consultation = $consultation;
+
+        return $this;
+    }
+
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
+    }
+
+    public function setPatient(?Patient $patient): static
+    {
+        $this->patient = $patient;
+
+        return $this;
+    }
+
+    public function getCaisse(): ?Caisse
+    {
+        return $this->caisse;
+    }
+
+    public function setCaisse(?Caisse $caisse): static
+    {
+        $this->caisse = $caisse;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+      return "".$this->getId()." ".$this->getDatePrise()." ".$this->getDateRdv()." ".$this->getPatient();
+    }
+
 }

@@ -40,17 +40,12 @@ class ModePaiement
     private ?string $typePaiement = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $mwthode = null;
+    private ?string $methode = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    /**
-     * @var Collection<int, Facturation>
-     */
-    #[ORM\OneToMany(targetEntity: Facturation::class, mappedBy: 'modePaiement')]
-    private Collection $facturations;
-
+   
     public function getUserCreate(): ?string
     {
         return $this->user_create;
@@ -123,10 +118,6 @@ class ModePaiement
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->facturations = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -145,14 +136,14 @@ class ModePaiement
         return $this;
     }
 
-    public function getMwthode(): ?string
+    public function getMethode(): ?string
     {
-        return $this->mwthode;
+        return $this->methode;
     }
 
-    public function setMwthode(string $mwthode): static
+    public function setMethode(string $methode): static
     {
-        $this->mwthode = $mwthode;
+        $this->methode = $methode;
 
         return $this;
     }
@@ -169,33 +160,9 @@ class ModePaiement
         return $this;
     }
 
-    /**
-     * @return Collection<int, Facturation>
-     */
-    public function getFacturations(): Collection
+    public function __toString()
     {
-        return $this->facturations;
+      return "".$this->getId()." ".$this->getTypePaiement()." ".$this->getMethode()." ".$this->getdate();
     }
 
-    public function addFacturation(Facturation $facturation): static
-    {
-        if (!$this->facturations->contains($facturation)) {
-            $this->facturations->add($facturation);
-            $facturation->setModePaiement($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFacturation(Facturation $facturation): static
-    {
-        if ($this->facturations->removeElement($facturation)) {
-            // set the owning side to null (unless already changed)
-            if ($facturation->getModePaiement() === $this) {
-                $facturation->setModePaiement(null);
-            }
-        }
-
-        return $this;
-    }
 }

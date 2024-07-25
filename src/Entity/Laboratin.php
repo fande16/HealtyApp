@@ -46,11 +46,7 @@ class Laboratin
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    /**
-     * @var Collection<int, ExamenClinique>
-     */
-    #[ORM\OneToMany(targetEntity: ExamenClinique::class, mappedBy: 'laboratin')]
-    private Collection $examenCliniques;
+    
 
     public function getUserCreate(): ?string
     {
@@ -124,11 +120,7 @@ class Laboratin
         return $this;
     }
 
-    public function __construct()
-    {
-        $this->examenCliniques = new ArrayCollection();
-    }
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -182,33 +174,9 @@ class Laboratin
         return $this;
     }
 
-    /**
-     * @return Collection<int, ExamenClinique>
-     */
-    public function getExamenCliniques(): Collection
+    public function __toString()
     {
-        return $this->examenCliniques;
+      return "".$this->getId()." ".$this->getNom()." ".$this->getPrenom()." ".$this->getTelephone();
     }
 
-    public function addExamenClinique(ExamenClinique $examenClinique): static
-    {
-        if (!$this->examenCliniques->contains($examenClinique)) {
-            $this->examenCliniques->add($examenClinique);
-            $examenClinique->setLaboratin($this);
-        }
-
-        return $this;
-    }
-
-    public function removeExamenClinique(ExamenClinique $examenClinique): static
-    {
-        if ($this->examenCliniques->removeElement($examenClinique)) {
-            // set the owning side to null (unless already changed)
-            if ($examenClinique->getLaboratin() === $this) {
-                $examenClinique->setLaboratin(null);
-            }
-        }
-
-        return $this;
-    }
 }
