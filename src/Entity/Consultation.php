@@ -53,8 +53,6 @@ class Consultation
 
    
 
-    #[ORM\ManyToOne(inversedBy: 'consultations')]
-    private ?Patient $patient = null;
 
     #[ORM\ManyToOne(inversedBy: 'consultations')]
     #[ORM\JoinColumn(nullable: false)]
@@ -212,18 +210,7 @@ class Consultation
     }
 
 
-    public function getPatient(): ?Patient
-    {
-        return $this->patient;
-    }
-
-    public function setPatient(?Patient $patient): static
-    {
-        $this->patient = $patient;
-
-        return $this;
-    }
-
+ 
     public function getMedecin(): ?Medecin
     {
         return $this->medecin;
@@ -323,7 +310,7 @@ class Consultation
 
     public function __toString()
     {
-      return "".$this->getid()." ".$this->getdate()." ".$this->getPatient()." ".$this->getMotif();
+      return "".$this->getid()." ".$this->getdate()." ".$this->getMotif();
     }
 
    
