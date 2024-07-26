@@ -54,7 +54,7 @@ class Consultation
    
 
 
-    #[ORM\ManyToOne(inversedBy: 'consultations')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Medecin $medecin = null;
 

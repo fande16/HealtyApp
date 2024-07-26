@@ -46,11 +46,11 @@ class LignePrescription
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\ManyToOne(inversedBy: 'lignePrescriptions')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Prescription $prescription = null;
 
-    #[ORM\ManyToOne(inversedBy: 'lignePrescriptions')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Stock $stock = null;
 

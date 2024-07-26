@@ -46,10 +46,10 @@ class Prescription
 
 
 
-    #[ORM\ManyToOne(inversedBy: 'prescriptions')]
+    #[ORM\ManyToOne]
     private ?Consultation $consultation = null;
 
-    #[ORM\ManyToOne(inversedBy: 'prescriptions')]
+    #[ORM\ManyToOne]
     private ?Pharmacien $pharmacien = null;
 
 

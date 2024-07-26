@@ -44,7 +44,7 @@ class Hospitalisation
     #[ORM\Column(length: 255)]
     private ?string $chambre = null;
 
-    #[ORM\ManyToOne(inversedBy: 'hospitalisations')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Consultation $consultation = null;
 
