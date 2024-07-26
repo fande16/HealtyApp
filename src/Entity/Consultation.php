@@ -310,7 +310,7 @@ class Consultation
 
     public function __toString()
     {
-      return "".$this->getid()." ".$this->getdate()." ".$this->getMotif();
+      return " ".$this->getDescription()." ".$this->getResultat();
     }
 
    
