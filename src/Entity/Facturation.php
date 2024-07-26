@@ -41,15 +41,15 @@ class Facturation
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\ManyToOne(inversedBy: 'facturations')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?ModePaiement $modePaiement = null;
 
-    #[ORM\ManyToOne(inversedBy: 'facturations')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Caisse $caisse = null;
 
-    #[ORM\ManyToOne(inversedBy: 'facturations')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Consultation $consultation = null;
 

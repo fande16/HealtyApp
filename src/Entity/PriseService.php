@@ -43,7 +43,7 @@ class PriseService
     private ?\DateTimeInterface $dateFin = null;
 
 
-    #[ORM\ManyToOne(inversedBy: 'priseServices')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Caisse $caisse = null;
 

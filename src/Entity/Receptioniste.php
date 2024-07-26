@@ -45,7 +45,7 @@ class Receptioniste
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\ManyToOne(inversedBy: 'receptionistes')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?PriseService $priseService = null;
 

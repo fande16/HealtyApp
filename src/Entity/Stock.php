@@ -43,7 +43,7 @@ class Stock
 
    
 
-    #[ORM\ManyToOne(inversedBy: 'stocks')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Medicament $medicament = null;
 

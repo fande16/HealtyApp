@@ -32,11 +32,11 @@ class Soins
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'soins')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Infirmiere $infirmiere = null;
 
-    #[ORM\ManyToOne(inversedBy: 'soins')]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Hospitalisation $hospitalisation = null;
 
