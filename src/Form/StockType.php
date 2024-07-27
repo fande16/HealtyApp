@@ -16,10 +16,7 @@ class StockType extends AbstractType
         $builder
             ->add('quantite')
             ->add('prix')
-            ->add('medicament', EntityType::class, [
-                'class' => Medicament::class,
-                'choice_label' => 'id',
-            ])
+            ->add('medicament')
         ;
     }
 

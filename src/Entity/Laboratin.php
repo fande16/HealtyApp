@@ -176,7 +176,7 @@ class Laboratin
 
     public function __toString()
     {
-      return "".$this->getId()." ".$this->getNom()." ".$this->getPrenom()." ".$this->getTelephone();
+      return " ".$this->getNom()." ".$this->getPrenom();
     }
 
 }

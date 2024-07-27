@@ -43,8 +43,7 @@ class Rdv
     #[ORM\Column(length: 255)]
     private ?string $motif = null;
 
-    #[ORM\ManyToOne]
-    private ?Consultation $consultation = null;
+
 
     #[ORM\ManyToOne]
     private ?Patient $patient = null;
@@ -165,17 +164,7 @@ class Rdv
         return $this;
     }
 
-    public function getConsultation(): ?Consultation
-    {
-        return $this->consultation;
-    }
-
-    public function setConsultation(?Consultation $consultation): static
-    {
-        $this->consultation = $consultation;
-
-        return $this;
-    }
+  
 
     public function getPatient(): ?Patient
     {
@@ -203,7 +192,7 @@ class Rdv
 
     public function __toString()
     {
-      return "".$this->getId()." ".$this->getDatePrise()." ".$this->getDateRdv()." ".$this->getPatient();
+      return "".$this->getPatient()."".$this->getCaisse();
     }
 
 }

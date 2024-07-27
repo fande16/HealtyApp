@@ -219,6 +219,6 @@ class Soins
 
     public function __toString()
     {
-      return "".$this->getId()." ".$this->getInfirmiere()." ".$this->getHospitalisation();
+      return " ".$this->getInfirmiere()." ".$this->getHospitalisation();
     }
 }

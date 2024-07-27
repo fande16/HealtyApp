@@ -18,10 +18,7 @@ class ReceptionisteType extends AbstractType
             ->add('prenom')
             ->add('telephone')
             ->add('email')
-            ->add('priseService', EntityType::class, [
-                'class' => PriseService::class,
-                'choice_label' => 'id',
-            ])
+            ->add('priseService')
         ;
     }
 

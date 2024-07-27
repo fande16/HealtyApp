@@ -20,14 +20,8 @@ class SoinsType extends AbstractType
             ->add('Température')
             ->add('Fréquence_respiratoire')
             ->add('Diurèse')
-            ->add('infirmiere', EntityType::class, [
-                'class' => Infirmiere::class,
-                'choice_label' => 'id',
-            ])
-            ->add('hospitalisation', EntityType::class, [
-                'class' => Hospitalisation::class,
-                'choice_label' => 'id',
-            ])
+            ->add('infirmiere')
+            ->add('hospitalisation')
         ;
     }
 

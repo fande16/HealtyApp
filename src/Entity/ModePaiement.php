@@ -162,7 +162,7 @@ class ModePaiement
 
     public function __toString()
     {
-      return "".$this->getId()." ".$this->getTypePaiement()." ".$this->getMethode()." ".$this->getdate();
+      return " ".$this->getTypePaiement();
     }
 
 }

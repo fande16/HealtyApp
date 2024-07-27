@@ -20,14 +20,8 @@ class PrescriptionType extends AbstractType
             ->add('date', null, [
                 'widget' => 'single_text',
             ])
-            ->add('consultation', EntityType::class, [
-                'class' => Consultation::class,
-                'choice_label' => 'id',
-            ])
-            ->add('pharmacien', EntityType::class, [
-                'class' => Pharmacien::class,
-                'choice_label' => 'id',
-            ])
+            ->add('consultation')
+            ->add('pharmacien')
         ;
     }
 

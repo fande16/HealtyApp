@@ -192,6 +192,6 @@ class Facturation
 
     public function __toString()
     {
-      return "".$this->getId()." ".$this->getMontant()." ".$this->getModePaiement()." ".$this->getCaisse();
+      return "".$this->getMontant();
     }
 }

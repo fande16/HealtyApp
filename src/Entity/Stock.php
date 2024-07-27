@@ -166,6 +166,6 @@ class Stock
 
     public function __toString()
     {
-      return "".$this->getId()." ".$this->getQuantite()." ".$this->getPrix()." ".$this->getMedicament();
+      return " ".$this->getQuantite();
     }
 }

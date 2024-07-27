@@ -80,6 +80,9 @@ class Consultation
     #[ORM\Column(length: 255)]
     private ?string $Diurese = null;
 
+    #[ORM\ManyToOne]
+    private ?Rdv $rdv = null;
+
     public function getUserCreate(): ?string
     {
         return $this->user_create;
@@ -311,6 +314,18 @@ class Consultation
     public function __toString()
     {
       return " ".$this->getDescription()." ".$this->getResultat();
+    }
+
+    public function getRdv(): ?Rdv
+    {
+        return $this->rdv;
+    }
+
+    public function setRdv(?Rdv $rdv): static
+    {
+        $this->rdv = $rdv;
+
+        return $this;
     }
 
    
