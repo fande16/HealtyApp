@@ -16,7 +16,7 @@ class ExamenCliniqueType extends AbstractType
     {
         $builder
             ->add('type')
-            ->add('resultat')
+            ->add('diagnostique')
             ->add('date', null, [
                 'widget' => 'single_text',
             ])

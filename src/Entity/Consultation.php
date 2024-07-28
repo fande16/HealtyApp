@@ -49,7 +49,7 @@ class Consultation
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $resultat = null;
+    private ?string $diagnostique = null;
 
    
 
@@ -63,22 +63,22 @@ class Consultation
     private ?string $poids = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Taille = null;
+    private ?string $taille = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Temperature = null;
+    private ?string $temperature = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Fréquence_cardiaque = null;
+    private ?string $frequence_cardiaque = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Tension = null;
+    private ?string $tension = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Fréquence_respiratoire = null;
+    private ?string $pression_respiratoire = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Diurese = null;
+    private ?string $diurese = null;
 
     #[ORM\ManyToOne]
     private ?Rdv $rdv = null;
@@ -200,14 +200,14 @@ class Consultation
         return $this;
     }
 
-    public function getResultat(): ?string
+    public function getdiagnostique(): ?string
     {
-        return $this->resultat;
+        return $this->diagnostique;
     }
 
-    public function setResultat(string $resultat): static
+    public function setdiagnostique(string $diagnostique): static
     {
-        $this->resultat = $resultat;
+        $this->diagnostique = $diagnostique;
 
         return $this;
     }
@@ -239,81 +239,81 @@ class Consultation
         return $this;
     }
 
-    public function getTaille(): ?string
+    public function gettaille(): ?string
     {
-        return $this->Taille;
+        return $this->taille;
     }
 
-    public function setTaille(string $Taille): static
+    public function settaille(string $taille): static
     {
-        $this->Taille = $Taille;
+        $this->taille = $taille;
 
         return $this;
     }
 
-    public function getTemperature(): ?string
+    public function gettemperature(): ?string
     {
-        return $this->Temperature;
+        return $this->temperature;
     }
 
-    public function setTemperature(string $Temperature): static
+    public function settemperature(string $temperature): static
     {
-        $this->Temperature = $Temperature;
+        $this->temperature = $temperature;
 
         return $this;
     }
 
-    public function getFréquenceCardiaque(): ?string
+    public function getfrequenceCardiaque(): ?string
     {
-        return $this->Fréquence_cardiaque;
+        return $this->frequence_cardiaque;
     }
 
-    public function setFréquenceCardiaque(string $Fréquence_cardiaque): static
+    public function setfrequenceCardiaque(string $frequence_cardiaque): static
     {
-        $this->Fréquence_cardiaque = $Fréquence_cardiaque;
+        $this->frequence_cardiaque = $frequence_cardiaque;
 
         return $this;
     }
 
     public function getTension(): ?string
     {
-        return $this->Tension;
+        return $this->tension;
     }
 
-    public function setTension(string $Tension): static
+    public function setTension(string $tension): static
     {
-        $this->Tension = $Tension;
+        $this->tension = $tension;
 
         return $this;
     }
 
-    public function getFréquenceRespiratoire(): ?string
+    public function getpressionRespiratoire(): ?string
     {
-        return $this->Fréquence_respiratoire;
+        return $this->pression_respiratoire;
     }
 
-    public function setFréquenceRespiratoire(string $Fréquence_respiratoire): static
+    public function setpressionRespiratoire(string $pression_respiratoire): static
     {
-        $this->Fréquence_respiratoire = $Fréquence_respiratoire;
+        $this->pression_respiratoire = $pression_respiratoire;
 
         return $this;
     }
 
-    public function getDiurese(): ?string
+    public function getdiurese(): ?string
     {
-        return $this->Diurese;
+        return $this->diurese;
     }
 
-    public function setDiurese(string $Diurese): static
+    public function setdiurese(string $diurese): static
     {
-        $this->Diurese = $Diurese;
+        $this->diurese = $diurese;
 
         return $this;
     }
 
     public function __toString()
     {
-      return " ".$this->getDescription()." ".$this->getResultat();
+      return " ".$this->getDescription()." ".$this->getdiagnostique();
     }
 
     public function getRdv(): ?Rdv

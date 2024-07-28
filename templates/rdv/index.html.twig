@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>patient</th>
                 <th>DatePrise</th>
                 <th>DateRdv</th>
                 <th>Motif</th>
@@ -18,10 +18,11 @@
         <tbody>
         {% for rdv in rdvs %}
             <tr>
-                <td>{{ rdv.id }}</td>
+                <td>{{ rdv.patient }}</td>
+                <td>{{ rdv.motif }}</td>
                 <td>{{ rdv.datePrise ? rdv.datePrise|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ rdv.dateRdv ? rdv.dateRdv|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ rdv.motif }}</td>
+                
                 <td>
                     <a href="{{ path('app_rdv_show', {'id': rdv.id}) }}">show</a>
                     <a href="{{ path('app_rdv_edit', {'id': rdv.id}) }}">edit</a>

@@ -235,7 +235,7 @@ class Patient
 
     public function __toString()
     {
-      return " ".$this->getNom()." ".$this->getPrenom()." ".$this->getGS();
+      return " ".$this->getPrenom()." ".$this->getNom()." ".$this->getGS();
     }
 
 

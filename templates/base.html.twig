@@ -77,6 +77,20 @@
                     </ul>
                 </li>
                 <li class="sidebar-item mb-2">
+                    <a href="#" class="sidebar-link d-flex align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#medecin">
+                        <i class="lni lni-agenda me-2"></i>
+                        <span>medecin</span>
+                    </a>
+                    <ul id="medecin" class="sidebar-dropdown list-unstyled collapse ms-3">
+                        <li class="sidebar-item mb-1">
+                            <a href="{{ path('app_medecin_index') }}" class="sidebar-link">Liste des medecins</a>
+                        </li>
+                        <li class="sidebar-item mb-1">
+                            <a href="{{ path('app_medecin_new') }}" class="sidebar-link">Ajouter un medecin</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item mb-2">
                     <a href="#" class="sidebar-link d-flex align-items-center">
                         <i class="lni lni-popup me-2"></i>
                         <span>Notification</span>

@@ -12,13 +12,12 @@ class RdvType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('datePrise', null, [
-                'widget' => 'single_text',
-            ])
+            ->add('patient')
+            ->add('motif')    
             ->add('dateRdv', null, [
                 'widget' => 'single_text',
             ])
-            ->add('motif')
+            
         ;
     }
 

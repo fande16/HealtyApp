@@ -12,7 +12,7 @@
                 <th>Frequence_Cardiaque</th>
                 <th>Pression_artérielle</th>
                 <th>Température</th>
-                <th>Fréquence_respiratoire</th>
+                <th>pression_respiratoire</th>
                 <th>Diurèse</th>
                 <th>actions</th>
             </tr>
@@ -24,7 +24,7 @@
                 <td>{{ soin.FrequenceCardiaque }}</td>
                 <td>{{ soin.PressionArtérielle }}</td>
                 <td>{{ soin.Température }}</td>
-                <td>{{ soin.FréquenceRespiratoire }}</td>
+                <td>{{ soin.pressionRespiratoire }}</td>
                 <td>{{ soin.Diurèse }}</td>
                 <td>
                     <a href="{{ path('app_soins_show', {'id': soin.id}) }}">show</a>

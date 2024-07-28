@@ -18,7 +18,7 @@ class SoinsType extends AbstractType
             ->add('Frequence_Cardiaque')
             ->add('Pression_artérielle')
             ->add('Température')
-            ->add('Fréquence_respiratoire')
+            ->add('pression_respiratoire')
             ->add('Diurèse')
             ->add('infirmiere')
             ->add('hospitalisation')

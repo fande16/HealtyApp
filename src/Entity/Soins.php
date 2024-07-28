@@ -50,7 +50,7 @@ class Soins
     private ?string $Température = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Fréquence_respiratoire = null;
+    private ?string $pression_respiratoire = null;
 
     #[ORM\Column(length: 255)]
     private ?string $Diurèse = null;
@@ -193,14 +193,14 @@ class Soins
         return $this;
     }
 
-    public function getFréquenceRespiratoire(): ?string
+    public function getpressionRespiratoire(): ?string
     {
-        return $this->Fréquence_respiratoire;
+        return $this->pression_respiratoire;
     }
 
-    public function setFréquenceRespiratoire(string $Fréquence_respiratoire): static
+    public function setpressionRespiratoire(string $pression_respiratoire): static
     {
-        $this->Fréquence_respiratoire = $Fréquence_respiratoire;
+        $this->pression_respiratoire = $pression_respiratoire;
 
         return $this;
     }

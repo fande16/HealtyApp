@@ -16,21 +16,21 @@ class ConsultationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date', null, [
-                'widget' => 'single_text',
-            ])
+           
+            ->add('rdv')
+            ->add('medecin')
             ->add('motif')
             ->add('description')
-            ->add('resultat')
             ->add('poids')
-            ->add('Taille')
-            ->add('Temperature')
-            ->add('Fréquence_cardiaque')
-            ->add('Tension')
-            ->add('Fréquence_respiratoire')
-            ->add('Diurese')
-            ->add('medecin')
-            ->add('rdv')
+            ->add('taille')
+            ->add('temperature')
+            ->add('Frequence_cardiaque')
+            ->add('tension')
+            ->add('pression_respiratoire')
+            ->add('diurese')
+            
+            
+            ->add('diagnostique')
         ;
     }
 

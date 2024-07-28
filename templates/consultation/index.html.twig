@@ -8,36 +8,22 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>rdv</th>
                 <th>Date</th>
                 <th>Motif</th>
                 <th>Description</th>
-                <th>Resultat</th>
-                <th>Poids</th>
-                <th>Taille</th>
-                <th>Temperature</th>
-                <th>Fréquence_cardiaque</th>
-                <th>Tension</th>
-                <th>Fréquence_respiratoire</th>
-                <th>Diurese</th>
+                <th>diagnostique</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for consultation in consultations %}
             <tr>
-                <td>{{ consultation.id }}</td>
+                <td>{{ consultation.rdv }}</td>
                 <td>{{ consultation.date ? consultation.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ consultation.motif }}</td>
                 <td>{{ consultation.description }}</td>
-                <td>{{ consultation.resultat }}</td>
-                <td>{{ consultation.poids }}</td>
-                <td>{{ consultation.Taille }}</td>
-                <td>{{ consultation.Temperature }}</td>
-                <td>{{ consultation.FréquenceCardiaque }}</td>
-                <td>{{ consultation.Tension }}</td>
-                <td>{{ consultation.FréquenceRespiratoire }}</td>
-                <td>{{ consultation.Diurese }}</td>
+                <td>{{ consultation.diagnostique }}</td>
                 <td>
                     <a href="{{ path('app_consultation_show', {'id': consultation.id}) }}">show</a>
                     <a href="{{ path('app_consultation_edit', {'id': consultation.id}) }}">edit</a>

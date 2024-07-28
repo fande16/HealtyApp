@@ -32,6 +32,8 @@ class ConsultationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $consultation->setUserCreate($this->getUser());
             $consultation->setDateCreate(new \DateTime('now'));
+            $consultation->setDate(new \DateTime('now'));
+
             $entityManager->persist($consultation);
             $entityManager->flush();
 

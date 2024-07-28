@@ -32,6 +32,7 @@ class RdvController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $rdv->setUserCreate($this->getUser());
             $rdv->setDateCreate(new \DateTime('now'));
+            $rdv->setDatePrise(new \DateTime('now'));
             $entityManager->persist($rdv);
             $entityManager->flush();
 
