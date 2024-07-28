@@ -179,7 +179,7 @@ class Hospitalisation
 
     public function __toString()
     {
-      return "".$this->getId()." ".$this->getDateEntre()." ".$this->getDateSortie()." ".$this->getConsultation();
+      return " ".$this->getChambre();
     }
 
     

@@ -148,7 +148,7 @@ class Medicament
 
     public function __toString()
     {
-      return "".$this->getId()." ".$this->getNom()." ".$this->getDescription();
+      return "".$this->getNom();
     }
 
 }

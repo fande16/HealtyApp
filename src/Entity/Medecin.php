@@ -208,7 +208,7 @@ class Medecin
 
     public function __toString()
     {
-      return "".$this->getId()." ".$this->getNom()." ".$this->getPrenom()." ".$this->getTelephone()." ".$this->getSpecialite();
+      return " ".$this->getNom()." ".$this->getPrenom()." ".$this->getSpecialite();
     }
 
 }

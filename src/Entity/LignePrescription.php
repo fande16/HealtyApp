@@ -205,7 +205,7 @@ class LignePrescription
 
     public function __toString()
     {
-      return "".$this->getId()." ".$this->getdate()." ".$this->getQuantite()." ".$this->getPosologie();
+      return "".$this->getQuantite()." ".$this->getLibelle();
     }
 
 }

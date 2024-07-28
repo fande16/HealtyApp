@@ -20,10 +20,7 @@ class PriseServiceType extends AbstractType
             ->add('dateFin', null, [
                 'widget' => 'single_text',
             ])
-            ->add('caisse', EntityType::class, [
-                'class' => Caisse::class,
-                'choice_label' => 'id',
-            ])
+            ->add('caisse')
         ;
     }
 

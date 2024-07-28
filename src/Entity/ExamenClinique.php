@@ -43,11 +43,11 @@ class ExamenClinique
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'examenCliniques')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Consultation $consultation = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'examenCliniques')]
     private ?Laboratin $laboratin = null;
 
     public function getUserCreate(): ?string
@@ -189,6 +189,6 @@ class ExamenClinique
 
     public function __toString()
     {
-      return "".$this->getId()." ".$this->gettype()." ".$this->getResultat()." ".$this->getdate();
+      return " ".$this->gettype();
     }
 }

@@ -21,14 +21,8 @@ class LignePrescriptionType extends AbstractType
             ->add('date', null, [
                 'widget' => 'single_text',
             ])
-            ->add('prescription', EntityType::class, [
-                'class' => Prescription::class,
-                'choice_label' => 'id',
-            ])
-            ->add('stock', EntityType::class, [
-                'class' => Stock::class,
-                'choice_label' => 'id',
-            ])
+            ->add('prescription')
+            ->add('stock')
         ;
     }
 

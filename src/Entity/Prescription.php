@@ -196,7 +196,7 @@ class Prescription
 
     public function __toString()
     {
-      return "".$this->getId()." ".$this->getPosologie()." ".$this->getDescription()." ".$this->getdate();
+      return " ".$this->getId();
     }
 
 

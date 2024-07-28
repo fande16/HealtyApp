@@ -20,18 +20,9 @@ class FacturationType extends AbstractType
             ->add('date', null, [
                 'widget' => 'single_text',
             ])
-            ->add('modePaiement', EntityType::class, [
-                'class' => ModePaiement::class,
-                'choice_label' => 'id',
-            ])
-            ->add('caisse', EntityType::class, [
-                'class' => Caisse::class,
-                'choice_label' => 'id',
-            ])
-            ->add('consultation', EntityType::class, [
-                'class' => Consultation::class,
-                'choice_label' => 'id',
-            ])
+            ->add('modePaiement')
+            ->add('caisse')
+            ->add('consultation')
         ;
     }
 

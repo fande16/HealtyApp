@@ -20,14 +20,8 @@ class ExamenCliniqueType extends AbstractType
             ->add('date', null, [
                 'widget' => 'single_text',
             ])
-            ->add('consultation', EntityType::class, [
-                'class' => Consultation::class,
-                'choice_label' => 'id',
-            ])
-            ->add('laboratin', EntityType::class, [
-                'class' => Laboratin::class,
-                'choice_label' => 'id',
-            ])
+            ->add('consultation')
+            ->add('laboratin')
         ;
     }
 

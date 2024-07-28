@@ -166,7 +166,7 @@ class PriseService
 
     public function __toString()
     {
-      return "".$this->getId()." ".$this->getDateDebut()." ".$this->getDateFin()." ".$this->getCaisse();
+      return " ".$this->getDateDebut()." ".$this->getCaisse();
     }
 
 }

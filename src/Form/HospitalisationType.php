@@ -21,10 +21,7 @@ class HospitalisationType extends AbstractType
                 'widget' => 'single_text',
             ])
             ->add('chambre')
-            ->add('consultation', EntityType::class, [
-                'class' => Consultation::class,
-                'choice_label' => 'id',
-            ])
+            ->add('consultation')
         ;
     }
 
