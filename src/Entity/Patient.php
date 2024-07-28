@@ -45,7 +45,7 @@ class Patient
     private ?int $age = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $sex = null;
+    private ?string $sexe = null;
 
     #[ORM\Column(length: 255)]
     private ?string $GS = null;
@@ -173,14 +173,14 @@ class Patient
         return $this;
     }
 
-    public function getSex(): ?string
+    public function getSexe(): ?string
     {
-        return $this->sex;
+        return $this->sexe;
     }
 
-    public function setSex(string $sex): static
+    public function setSex(string $sexe): static
     {
-        $this->sex = $sex;
+        $this->sexe = $sexe;
 
         return $this;
     }

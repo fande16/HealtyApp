@@ -15,7 +15,7 @@ class PatientType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('age')
-            ->add('sex')
+            ->add('sexe')
             ->add('GS')
             ->add('mobile')
             ->add('email')
