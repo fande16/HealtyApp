@@ -35,11 +35,8 @@ class Prescription
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $posologie = null;
+  
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
@@ -132,29 +129,8 @@ class Prescription
         return $this->id;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
 
-    public function setDescription(string $description): static
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getPosologie(): ?string
-    {
-        return $this->posologie;
-    }
-
-    public function setPosologie(string $posologie): static
-    {
-        $this->posologie = $posologie;
-
-        return $this;
-    }
+   
 
     public function getDate(): ?\DateTimeInterface
     {
