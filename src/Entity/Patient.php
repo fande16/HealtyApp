@@ -178,7 +178,7 @@ class Patient
         return $this->sexe;
     }
 
-    public function setSex(string $sexe): static
+    public function setSexe(string $sexe): static
     {
         $this->sexe = $sexe;
 

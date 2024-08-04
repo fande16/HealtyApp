@@ -14,12 +14,6 @@ class PriseServiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('dateDebut', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('dateFin', null, [
-                'widget' => 'single_text',
-            ])
             ->add('caisse')
         ;
     }

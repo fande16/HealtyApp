@@ -28,7 +28,7 @@
 
     <a href="{{ path('app_mode_paiement_index') }}">back to list</a>
 
-    <a href="{{ path('app_mode_paiement_edit', {'id': mode_paiement.id}) }}">edit</a>
+    <a href="{{ path('app_mode_paiement_edit', {'id': mode_paiement.id}) }}"class="btn btn-lg btn-primary">edit</a>
 
     {{ include('mode_paiement/_delete_form.html.twig') }}
 {% endblock %}

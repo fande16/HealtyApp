@@ -5,7 +5,9 @@
 {% block content%}
     <h1>Consultation index</h1>
 
-    <table class="table">
+    <div class="data-table-container">
+    <table id="example" class="table table-striped " style="width:100%">
+
         <thead>
             <tr>
                 <th>rdv</th>
@@ -36,6 +38,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
-    <a href="{{ path('app_consultation_new') }}">Create new</a>
+    <a href="{{ path('app_consultation_new') }}"class="btn btn-lg btn-primary">Create new</a>
 {% endblock %}

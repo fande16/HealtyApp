@@ -28,7 +28,7 @@
 
     <a href="{{ path('app_examen_clinique_index') }}">back to list</a>
 
-    <a href="{{ path('app_examen_clinique_edit', {'id': examen_clinique.id}) }}">edit</a>
+    <a href="{{ path('app_examen_clinique_edit', {'id': examen_clinique.id}) }}"class="btn btn-lg btn-primary">edit</a>
 
     {{ include('examen_clinique/_delete_form.html.twig') }}
 {% endblock %}

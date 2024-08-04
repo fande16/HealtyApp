@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Patient;
 use App\Entity\Rdv;
 use App\Form\RdvType;
 use App\Repository\RdvRepository;
@@ -25,7 +26,18 @@ class RdvController extends AbstractController
     #[Route('/new', name: 'app_rdv_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $patientId = $request->query->get('patientId');
+        
+        $patient = null;
+        if ($patientId) {
+            $patient = $entityManager->getRepository(Patient::class)->find($patientId);
+        }
+
+        // Création d'une nouvelle consultation
         $rdv = new Rdv();
+        if ($patient) {
+            $rdv->setPatient($patient);
+        }
         $form = $this->createForm(RdvType::class, $rdv);
         $form->handleRequest($request);
 

@@ -5,13 +5,14 @@
 {% block content%}
     <h1>Rdv index</h1>
 
-    <table class="table">
+    <div class="data-table-container">
+    <table id="example" class="table table-striped " style="width:100%">
+
         <thead>
             <tr>
                 <th>patient</th>
-                <th>DatePrise</th>
-                <th>DateRdv</th>
                 <th>Motif</th>
+                <th>DateRdv</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,7 +21,6 @@
             <tr>
                 <td>{{ rdv.patient }}</td>
                 <td>{{ rdv.motif }}</td>
-                <td>{{ rdv.datePrise ? rdv.datePrise|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ rdv.dateRdv ? rdv.dateRdv|date('Y-m-d H:i:s') : '' }}</td>
                 
                 <td>
@@ -35,6 +35,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
-    <a href="{{ path('app_rdv_new') }}">Create new</a>
+    <a href="{{ path('app_rdv_new') }}"class="btn btn-lg btn-primary">Create new</a>
 {% endblock %}

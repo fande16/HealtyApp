@@ -5,23 +5,24 @@
 {% block content%}
     <h1>Patient index</h1>
 
-    <table class="table">
+<div class="data-table-container">
+    <table id="example" class="table table-striped " style="width:100%">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Nom</th>
-                <th>Prenom</th>
-                <th>Age</th>
-                <th>sexe</th>
+                <th>Prénom</th>
+                <th>Âge</th>
+                <th>Sexe</th>
                 <th>GS</th>
                 <th>Mobile</th>
                 <th>Email</th>
                 <th>Adresse</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for patient in patients %}
+            {% for patient in patients %}
             <tr>
                 <td>{{ patient.id }}</td>
                 <td>{{ patient.nom }}</td>
@@ -37,13 +38,15 @@
                     <a href="{{ path('app_patient_edit', {'id': patient.id}) }}">edit</a>
                 </td>
             </tr>
-        {% else %}
+            {% else %}
             <tr>
-                <td colspan="10">no records found</td>
+                <td colspan="10">Aucun enregistrement trouvé</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
+</div>
 
-    <a  href="{{ path('app_patient_new') }}">Create new</a>
+<a class="btn btn-lg btn-primary" href="{{ path('app_patient_new') }}">Create new</a>
+
 {% endblock %}

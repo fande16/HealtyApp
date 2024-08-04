@@ -41,6 +41,9 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/prise/service, roles: IS_AUTHENTICATED }
+        - { path: ^/login, role: PUBLIC_ACCESS }
+        - { path: ^/, role: IS_AUTHENTICATED }
 
 when@test:
     security:

@@ -32,13 +32,14 @@ class PriseServiceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $priseService->setUserCreate($this->getUser());
             $priseService->setDateDebut(new \DateTime('now'));
+            $priseService->setUtilisateur($this->getUser());
             //$priseService->setDateFin(new \DateTime('logout'));
 
             $priseService->setDateCreate(new \DateTime('now'));
             $entityManager->persist($priseService);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_prise_service_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('prise_service/new.html.twig', [
@@ -86,5 +87,17 @@ class PriseServiceController extends AbstractController
         }
 
         return $this->redirectToRoute('app_prise_service_index', [], Response::HTTP_SEE_OTHER);
+    }#[Route('/setfindeservice', name: 'app_set_findeservice')]
+    public function setFinDeService(PriseServiceRepository $priseServiceRepository): Response
+    {
+        $user = $this->getUser();
+        if ($user) {
+            $priseservice = $priseServiceRepository->findOneBy(['user' => $user, 'fin' => null]);
+            if ($priseservice) {
+                $priseservice->setFinDeService(new \DateTime('now'));
+                $priseServiceRepository->save($priseservice, true);
+            }
+        }
+        return new Response('Service updated');
     }
 }

@@ -47,7 +47,44 @@ class Prescription
     private ?Consultation $consultation = null;
 
     #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable:true)]
     private ?Pharmacien $pharmacien = null;
+    #[ORM\OneToMany(mappedBy: 'prescription', targetEntity: LignePrescription::class, cascade: ['persist', 'remove'])]
+    private Collection $lignePrescriptions;
+
+    public function __construct()
+    {
+        $this->lignePrescriptions = new ArrayCollection();
+    }
+    /**
+     * @return Collection<int, LignePrescription>
+     */
+    public function getLignePrescriptions(): Collection
+    {
+        return $this->lignePrescriptions;
+    }
+
+    public function addLignePrescription(LignePrescription $lignePrescription): self
+    {
+        if (!$this->lignePrescriptions->contains($lignePrescription)) {
+            $this->lignePrescriptions->add($lignePrescription);
+            $lignePrescription->setPrescription($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLignePrescription(LignePrescription $lignePrescription): self
+    {
+        if ($this->lignePrescriptions->removeElement($lignePrescription)) {
+            // set the owning side to null (unless already changed)
+            if ($lignePrescription->getPrescription() === $this) {
+                $lignePrescription->setPrescription(null);
+            }
+        }
+
+        return $this;
+    }
 
 
     public function getUserCreate(): ?string

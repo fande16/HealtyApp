@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Security;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -48,9 +47,22 @@ class UsersAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        $user = $token->getUser();
+
+        if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('home'));
+        }
+
+        if (in_array('ROLE_MEDECIN', $user->getRoles(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('app_dashboard'));
+        }
+
+        if (in_array('ROLE_RECEPTIONISTE', $user->getRoles(), true)) {
+            return new RedirectResponse($this->urlGenerator->generate('app_prise_service_new'));
+        }
+
+        // Default redirection if no role matches
+        return new RedirectResponse($this->urlGenerator->generate('home'));
     }
 
     protected function getLoginUrl(Request $request): string

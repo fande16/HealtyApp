@@ -24,7 +24,7 @@
 
     <a href="{{ path('app_prise_service_index') }}">back to list</a>
 
-    <a href="{{ path('app_prise_service_edit', {'id': prise_service.id}) }}">edit</a>
+    <a href="{{ path('app_prise_service_edit', {'id': prise_service.id}) }}"class="btn btn-lg btn-primary">edit</a>
 
     {{ include('prise_service/_delete_form.html.twig') }}
 {% endblock %}

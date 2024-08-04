@@ -313,7 +313,7 @@ class Consultation
 
     public function __toString()
     {
-      return " ".$this->getDescription()." ".$this->getdiagnostique();
+      return " ".$this->getRdv();
     }
 
     public function getRdv(): ?Rdv

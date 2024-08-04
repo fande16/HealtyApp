@@ -32,7 +32,7 @@
 
     <a href="{{ path('app_pharmacien_index') }}">back to list</a>
 
-    <a href="{{ path('app_pharmacien_edit', {'id': pharmacien.id}) }}">edit</a>
+    <a href="{{ path('app_pharmacien_edit', {'id': pharmacien.id}) }}"class="btn btn-lg btn-primary">edit</a>
 
     {{ include('pharmacien/_delete_form.html.twig') }}
 {% endblock %}

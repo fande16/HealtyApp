@@ -39,13 +39,17 @@ class PriseService
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateDebut = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE,nullable: true)]
     private ?\DateTimeInterface $dateFin = null;
 
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Caisse $caisse = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $utilisateur = null;
 
     public function getUserCreate(): ?string
     {
@@ -166,7 +170,19 @@ class PriseService
 
     public function __toString()
     {
-      return " ".$this->getDateDebut()." ".$this->getCaisse();
+      return " ".$this->$this->getCaisse();
+    }
+
+    public function getUtilisateur(): ?User
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?User $utilisateur): static
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
     }
 
 }

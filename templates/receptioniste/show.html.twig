@@ -32,7 +32,7 @@
 
     <a href="{{ path('app_receptioniste_index') }}">back to list</a>
 
-    <a href="{{ path('app_receptioniste_edit', {'id': receptioniste.id}) }}">edit</a>
+    <a href="{{ path('app_receptioniste_edit', {'id': receptioniste.id}) }}"class="btn btn-lg btn-primary">edit</a>
 
     {{ include('receptioniste/_delete_form.html.twig') }}
 {% endblock %}

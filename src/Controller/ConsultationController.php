@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Consultation;
+use App\Entity\Rdv;
 use App\Form\ConsultationType;
 use App\Repository\ConsultationRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,7 +26,19 @@ class ConsultationController extends AbstractController
     #[Route('/new', name: 'app_consultation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $rdvId = $request->query->get('rdvId');
+        
+        $rendezvous = null;
+        if ($rdvId) {
+            $rendezvous = $entityManager->getRepository(Rdv::class)->find($rdvId);
+        }
+
+        // Création d'une nouvelle consultation
         $consultation = new Consultation();
+        if ($rendezvous) {
+            $consultation->setRdv($rendezvous);
+            $consultation->setMotif($rendezvous->getMotif());
+        }
         $form = $this->createForm(ConsultationType::class, $consultation);
         $form->handleRequest($request);
 
@@ -37,7 +50,7 @@ class ConsultationController extends AbstractController
             $entityManager->persist($consultation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_consultation_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_consultation_show', ['id' => $consultation->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('consultation/new.html.twig', [

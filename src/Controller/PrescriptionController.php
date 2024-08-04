@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Consultation;
 use App\Entity\Prescription;
 use App\Form\PrescriptionType;
 use App\Repository\PrescriptionRepository;
@@ -23,26 +24,38 @@ class PrescriptionController extends AbstractController
     }
 
     #[Route('/new', name: 'app_prescription_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $prescription = new Prescription();
-        $form = $this->createForm(PrescriptionType::class, $prescription);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $prescription->setUserCreate($this->getUser());
-            $prescription->setDateCreate(new \DateTime('now'));
-            $entityManager->persist($prescription);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_prescription_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('prescription/new.html.twig', [
-            'prescription' => $prescription,
-            'form' => $form,
-        ]);
+public function new(Request $request, EntityManagerInterface $entityManager): Response
+{
+    $consultationId = $request->query->get('consultationId');
+    
+    $consultation = null;
+    if ($consultationId) {
+        $consultation = $entityManager->getRepository(Consultation::class)->find($consultationId);
     }
+
+    $prescription = new Prescription();
+    if ($consultation) {
+        $prescription->setConsultation($consultation);
+    }
+    $form = $this->createForm(PrescriptionType::class, $prescription);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $prescription->setUserCreate($this->getUser());
+        $prescription->setDateCreate(new \DateTime('now'));
+        $prescription->setDate(new \DateTime('now'));
+        $entityManager->persist($prescription);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_prescription_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    return $this->render('prescription/new.html.twig', [
+        'prescription' => $prescription,
+        'form' => $form,
+    ]);
+}
+
 
     #[Route('/{id}', name: 'app_prescription_show', methods: ['GET'])]
     public function show(Prescription $prescription): Response

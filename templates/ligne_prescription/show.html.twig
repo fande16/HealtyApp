@@ -32,7 +32,7 @@
 
     <a href="{{ path('app_ligne_prescription_index') }}">back to list</a>
 
-    <a href="{{ path('app_ligne_prescription_edit', {'id': ligne_prescription.id}) }}">edit</a>
+    <a href="{{ path('app_ligne_prescription_edit', {'id': ligne_prescription.id}) }}"class="btn btn-lg btn-primary">edit</a>
 
     {{ include('ligne_prescription/_delete_form.html.twig') }}
 {% endblock %}
